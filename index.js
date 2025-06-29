@@ -7,8 +7,8 @@ const cors = require("cors");
 const Event = require("./models/event.model");
 const PORT = process.env.PORT;
 
-const jsonData = fs.readFileSync("event.json", "utf-8"); //read json file
-const allEventsData = JSON.parse(jsonData); //convert in readable format
+// const jsonData = fs.readFileSync("event.json", "utf-8"); //read json file
+// const allEventsData = JSON.parse(jsonData); //convert in readable format
 
 const app = express();
 app.use(express.json());
