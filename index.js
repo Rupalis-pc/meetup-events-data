@@ -61,6 +61,35 @@ app.get("/events", async (req, res) => {
   }
 });
 
+app.get("/events/:id", async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.id);
+    console.log(event);
+    if (event) {
+      res.json(event);
+    } else {
+      res.status(404).json({ error: "Event not found." });
+    }
+  } catch (error) {
+    console.log("Failed to fetch events data.");
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/events", async (req, res) => {
+  try {
+    const newEvent = new Event(req.body);
+    console.log(newEvent);
+    if (newEvent) {
+      res.status(201).json({ message: "New Event added successfully." });
+    } else {
+      res.status(404).json({ error: "Data not found." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to post data." });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on PORT ${PORT}`);
 });
